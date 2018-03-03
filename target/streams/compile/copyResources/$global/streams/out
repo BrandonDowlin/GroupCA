@@ -1,10 +1,9 @@
 [0m[[0m[0mdebug[0m] [0m[0mCopy resource mappings: [0m
-[0m[[0m[0mdebug[0m] [0m[0m	(/home/wdd/webapps/lab2/lab2/conf/evolutions,/home/wdd/webapps/lab2/lab2/target/scala-2.12/classes/evolutions)[0m
-[0m[[0m[0mdebug[0m] [0m[0m	(/home/wdd/webapps/lab2/lab2/conf/application.conf,/home/wdd/webapps/lab2/lab2/target/scala-2.12/classes/application.conf)[0m
-[0m[[0m[0mdebug[0m] [0m[0m	(/home/wdd/webapps/lab2/lab2/conf/logback.xml,/home/wdd/webapps/lab2/lab2/target/scala-2.12/classes/logback.xml)[0m
-[0m[[0m[0mdebug[0m] [0m[0m	(/home/wdd/webapps/lab2/lab2/conf/routes,/home/wdd/webapps/lab2/lab2/target/scala-2.12/classes/routes)[0m
-[0m[[0m[0mdebug[0m] [0m[0m	(/home/wdd/webapps/lab2/lab2/conf/evolutions/default,/home/wdd/webapps/lab2/lab2/target/scala-2.12/classes/evolutions/default)[0m
-[0m[[0m[0mdebug[0m] [0m[0m	(/home/wdd/webapps/lab2/lab2/conf/evolutions/default/3.sql,/home/wdd/webapps/lab2/lab2/target/scala-2.12/classes/evolutions/default/3.sql)[0m
-[0m[[0m[0mdebug[0m] [0m[0m	(/home/wdd/webapps/lab2/lab2/conf/evolutions/default/2.sql,/home/wdd/webapps/lab2/lab2/target/scala-2.12/classes/evolutions/default/2.sql)[0m
-[0m[[0m[0mdebug[0m] [0m[0m	(/home/wdd/webapps/lab2/lab2/conf/evolutions/default/1.sql,/home/wdd/webapps/lab2/lab2/target/scala-2.12/classes/evolutions/default/1.sql)[0m
-[0m[[0m[0mdebug[0m] [0m[0m	(/home/wdd/webapps/lab2/lab2/conf/evolutions/default/4.sql,/home/wdd/webapps/lab2/lab2/target/scala-2.12/classes/evolutions/default/4.sql)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\brand\Documents\GroupCA\GroupCA\conf\application.conf,C:\Users\brand\Documents\GroupCA\GroupCA\target\scala-2.12\classes\application.conf)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\brand\Documents\GroupCA\GroupCA\conf\evolutions,C:\Users\brand\Documents\GroupCA\GroupCA\target\scala-2.12\classes\evolutions)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\brand\Documents\GroupCA\GroupCA\conf\logback.xml,C:\Users\brand\Documents\GroupCA\GroupCA\target\scala-2.12\classes\logback.xml)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\brand\Documents\GroupCA\GroupCA\conf\routes,C:\Users\brand\Documents\GroupCA\GroupCA\target\scala-2.12\classes\routes)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\brand\Documents\GroupCA\GroupCA\conf\evolutions\default,C:\Users\brand\Documents\GroupCA\GroupCA\target\scala-2.12\classes\evolutions\default)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\brand\Documents\GroupCA\GroupCA\conf\evolutions\default\1.sql,C:\Users\brand\Documents\GroupCA\GroupCA\target\scala-2.12\classes\evolutions\default\1.sql)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\brand\Documents\GroupCA\GroupCA\conf\evolutions\default\2.sql,C:\Users\brand\Documents\GroupCA\GroupCA\target\scala-2.12\classes\evolutions\default\2.sql)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\brand\Documents\GroupCA\GroupCA\conf\evolutions\default\3.sql,C:\Users\brand\Documents\GroupCA\GroupCA\target\scala-2.12\classes\evolutions\default\3.sql)[0m

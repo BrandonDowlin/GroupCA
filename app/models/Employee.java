@@ -8,43 +8,48 @@ import play.data.format.*;
 import play.data.validation.*;
 
 @Entity
-public class Employeeextends Model {
+public class Employee extends Model {
     
         // Properties
         @Id
         private Long id;
 
         @ManyToMany(cascade = CascadeType.ALL, mappedBy= "employees")
-        public List<Employee> pList;
+        public List<Project> projects;
 
         @Constraints.Required
-        private String name;
+        private String fname;
+
+        @Constraints.Required
+        private String lname;
         
         @Constraints.Required
+        @ManyToOne
         private Department department; 
         
        
 
         public List<Long> projSelect = new ArrayList<Long>();
 
-        public static final Finder<Long, employee> find = new Finder<>(Employee.class);
+        public static final Finder<Long, Employee> find = new Finder<>(Employee.class);
     
 
-        public static final List<employee> findAll() { 
+        public static final List<Employee> findAll() { 
             
-                    return employee.find.all();
+                    return Employee.find.all();
         }
         // Default Constructor
-        public employee() {
+        public Employee() {
         }
     
         // Constructor to initialise object
-        public employee(Long id, String name, Department department) {
+        public Employee(Long id, String fname, String lname, Department department) {
             this.id = id;
-            this.name = name;
+            this.fname = fname;
+            this.lname = lname;
             this.department=department;
         }
-        public List<Long> getprojSelect(){
+        public List<Long> getProjSelect(){
             return this.projSelect;
         }
     
@@ -55,20 +60,31 @@ public class Employeeextends Model {
         public void setId(Long id) {
             this.id = id;
         }
-        public String getName() {
-            return name;
+        public String getFname() {
+            return fname;
         }
-        public void setName(String name) {
-            this.name = name;
+        public String getLname() {
+            return lname;
         }
-
+        public void setFname(String fname) {
+            this.fname = fname;
+        }
+        public void setLname(String lname) {
+            this.lname = lname;
+        }
         public Department getDepartment(){
             return this.department;
         }
         public void setDepartment(Department d){
             this.department=d;
         }
-       
+        public List<Project> getProjects() {
+            return projects;
+        }
+    
+        public void setProjects(List<Project> projects) {
+            this.projects = projects;
+        }
         
     }
     

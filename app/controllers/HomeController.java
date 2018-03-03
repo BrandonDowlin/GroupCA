@@ -44,13 +44,13 @@ public class HomeController extends Controller {
         }
     
         public Result index(Long proj) {
-            List<employee> employeeList = null;
-            List<project> projectList = project.findAll();
+            List<Employee> employeeList = null;
+            List<Project> projectList = Project.findAll();
             if (proj == 0) {
-                employeeList = employee.findAll();
+                employeeList = Employee.findAll();
             }
             else {
-                employeeList = project.find.ref(proj).getemployees();
+                employeeList = Project.find.ref(proj).getEmployees();
             }
             return ok(index.render(employeeList, projectList, User.getUserById(session().get("email")),e));
         }
@@ -58,155 +58,108 @@ public class HomeController extends Controller {
     
     @Security.Authenticated(Secured.class)
     @With(AuthAdmin.class)
-    public Result addemployee() {
-        Form<employee> employeeForm = formFactory.form(employee.class);
-        return ok(addemployee.render(employeeForm, User.getUserById(session().get("email"))));
+    public Result addEmployee() {
+        Form<Employee> employeeForm = formFactory.form(Employee.class);
+        return ok(addEmployee.render(employeeForm, User.getUserById(session().get("email"))));
     }
-    public Result addemployeesubmit() {
-        employee newemployee;
-        Form<employee> newemployeeForm = formFactory.form(employee.class).bindFromRequest();
+    public Result addEmployeeSubmit() {
+        Employee newEmployee;
+        Form<Employee> newEmployeeForm = formFactory.form(Employee.class).bindFromRequest();
 
-        if (newemployeeForm.hasErrors()) {
-            return badRequest(addemployee.render(newemployeeForm, User.getUserById(session().get("email"))));
-        }
+        if (newEmployeeForm.hasErrors()) {
+            return badRequest(addEmployee.render(newEmployeeForm, User.getUserById(session().get("email"))));
+        } 
         else {
-            newemployee = newemployeeForm.get();
+            newEmployee = newEmployeeForm.get();
 
-            if (newemployee.getId() == null) {
-                newemployee.save();    
-                for (Long proj : newemployee.getProjSelect()){
-                    newemployee.projects.add(project.find.byId(proj));
+            if (newEmployee.getId() == null) {
+
+                newEmployee.save();
+
+                for (Long proj : newEmployee.getProjSelect()) {
+                    newEmployee.projects.add(Project.find.byId(proj));
                 }
-                newemployee.update();
-                flash("success", "employee" +newemployee.getName() + " was updated");
+            newEmployee.update();
+
+            flash("success", "Employee " + newEmployee.getLname() + " was updated");
         }
+    }
+
+
 
         MultipartFormData data = request().body().asMultipartFormData();
         FilePart<File> image = data.getFile("upload");
 
-        String saveImageMsg = saveFile(newemployee.getId(), image);
+        String saveImageMsg = saveFile(newEmployee.getId(), image);
 
-        flash("success", "employee " + newemployee.getName() + " has been created/updated " + saveImageMsg);
+        flash("success", "Employee " + newEmployee.getLname() + " has been created/updated " + saveImageMsg);
 
         return redirect(controllers.routes.HomeController.index(0));
-    }}
+    }
+
     @Security.Authenticated(Secured.class)
     @With(AuthAdmin.class)
     @Transactional
-    public Result addCustomer() {
-        Form<Customer> customerForm = formFactory.form(Customer.class);
-        return ok(addCustomer.render(customerForm,User.getUserById(session().get("email"))));
-    }
-
-    public Result addCustomerSubmit() {
-        Form<Customer> newCustomerForm = formFactory.form(Customer.class).bindFromRequest();
-        
-
-        if (newCustomerForm.hasErrors()) {
-            return badRequest(addCustomer.render(newCustomerForm,User.getUserById(session().get("email"))));
-            
-        } 
-        else {
-            Customer newCustomer = newCustomerForm.get();
-            
-            if (newCustomer.getId() == null) {
-                newCustomer.save();
-                flash("success", "Customer " + newCustomer.getName() + " was added");                
-            }
-
-            else {
-                newCustomer.update();
-                flash("success", "Customer " + newCustomer.getName() + " was updated");                
-            }
-
-
-
-            return redirect(controllers.routes.HomeController.customer());
-        }
-    }
-    @Security.Authenticated(Secured.class)
-    @With(AuthAdmin.class)
-    @Transactional
-    public Result deleteemployee(Long id) {
-        employee.find.ref(id).delete();
+    public Result deleteEmployee(Long id) {
+        Employee.find.ref(id).delete();
 
         flash("success", "employee has been deleted");
         
         return redirect(routes.HomeController.index(0));
     }
-    public Result deleteCustomer(Long id) {
-        Customer.find.ref(id).delete();
-        flash("success", "Customer has been deleted");
-
-        return redirect(routes.HomeController.index(0));
-    }
 
     @Security.Authenticated(Secured.class)
     @With(AuthAdmin.class)
     @Transactional
-    public Result updateemployee(Long id) {
-        employee p;
-        Form<employee> employeeForm;
+    public Result updateEmployee(Long id) {
+        Employee e;
+        Form<Employee> employeeForm;
 
         try {
-            p = employee.find.byId(id);
-            employeeForm = formFactory.form(employee.class).fill(p);
+            e = Employee.find.byId(id);
+            employeeForm = formFactory.form(Employee.class).fill(e);
         } 
         catch (Exception ex) {
             return badRequest("error");
         }
-        return ok(updateemployee.render(id, employeeForm,User.getUserById(session().get("email"))));
+        return ok(updateEmployee.render(id, employeeForm,User.getUserById(session().get("email"))));
     }
-    public Result updateemployeesubmit(Long id) {
+    public Result updateEmployeeSubmit(Long id) {
         
         // Retrieve the submitted form object (bind from the HTTP request)
-        Form<employee> updateemployeeForm = formFactory.form(employee.class).bindFromRequest();
+        Form<Employee> updateEmployeeForm = formFactory.form(Employee.class).bindFromRequest();
 
         // Check for errors (based on constraints set in the employee class)
-        if (updateemployeeForm.hasErrors()) {
+        if (updateEmployeeForm.hasErrors()) {
             // Display the form again by returning a bad request
-            return badRequest(updateemployee.render(id,updateemployeeForm, User.getUserById(session().get("email"))));
+            return badRequest(updateEmployee.render(id,updateEmployeeForm, User.getUserById(session().get("email"))));
         } else {
             // No errors found - extract the employee detail from the form
-            employee p = updateemployeeForm.get();
-            p.setId(id);
+            Employee e = updateEmployeeForm.get();
+            e.setId(id);
             
-            List<project> newProjs = new ArrayList<project>();
-            for(Long proj : p.getProjSelect()){
-                newProjs.add(project.find.byId(proj));
+            List<Project> newProjs = new ArrayList<Project>();
+            for(Long proj : e.getProjSelect()){
+                newProjs.add(Project.find.byId(proj));
             }
-            p.projects = newProjs;
+            e.projects = newProjs;
             
             //update (save) this employee
-            p.update();
+            e.update();
 
             MultipartFormData data = request().body().asMultipartFormData();
             FilePart<File> image = data.getFile("upload");
 
-            String saveImageMsg = saveFile(p.getId(), image);
+            String saveImageMsg = saveFile(e.getId(), image);
 
-            flash("success", "employee " + p.getName() + " has been  updated " + saveImageMsg);
+            flash("success", "employee " +e.getFname() + "" +e.getLname() + " has been  updated " + saveImageMsg);
             
             // Redirect to the index page
             return redirect(controllers.routes.HomeController.index(0));
         }
     }
     
-    @Transactional
-    public Result updateCustomer(Long id) {        
-        Customer c;
-        Form<Customer> customerForm;
-
-        try {
-            c = Customer.find.byId(id);
-            customerForm = formFactory.form(Customer.class).fill(c);
-        }
-        catch (Exception ex) {
-            return badRequest("error");
-        }
-
-        return ok(addCustomer.render(customerForm,User.getUserById(session().get("email"))));
-    }
+    
     public String saveFile(Long id, FilePart<File> uploaded) {
         // make sure that the file exists
         if (uploaded != null) {
@@ -286,13 +239,6 @@ public class HomeController extends Controller {
             }
         }
         return "/ no file";
-    }
-    public Result employeeDetails(Long id) {
-        employee p;
-
-        p = employee.find.byId(id);
-            
-        return ok(employeeDetails.render(p,User.getUserById(session().get("email")),e));
     }
 
 

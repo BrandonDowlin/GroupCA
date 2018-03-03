@@ -16,15 +16,15 @@ public class Project extends Model {
     private String name;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    public List<Employee> Employees;
+    public List<Employee> employees;
 
     public Project() {
     }
 
-    public Project(Long id, String name, List<Employee> Employees) {
+    public Project(Long id, String name, List<Employee> employees) {
         this.id = id;
         this.name = name;
-        this.Employees = Employees;
+        this.employees = employees;
     }
 
     public Long getId() {
@@ -44,11 +44,11 @@ public class Project extends Model {
     }
 
     public List<Employee> getEmployees() {
-        return Employees;
+        return employees;
     }
 
-    public void setEmployees(List<Employee> Employees) {
-        this.Employees = Employees;
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 
     public static Finder<Long, Project> find = new Finder<Long, Project>(Project.class);
@@ -60,14 +60,17 @@ public class Project extends Model {
     public static Map<String, String> options() {
         LinkedHashMap<String, String> options = new LinkedHashMap();
 
-        for (Project c: Project.findAll()) {
-            options.put(c.getId().toString(), c.getName());
+        for (Project p: Project.findAll()) {
+            options.put(p.getId().toString(), p.getName());
         }
         
         return options;
     }
-    public static boolean inProject(Long Project, Long Employee){
-        return find.query().where().eq("Employees.id", Employee).eq("id" , Project).findCount() > 0;
+    public static boolean inProject(Long project, Long employee){
+        return find.query().where()
+        .eq("employees.id", employee)
+        .eq("id" , project)
+        .findCount() > 0;
     } 
 
 }
