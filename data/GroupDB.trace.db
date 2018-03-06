@@ -1,19 +1,15 @@
-2018-02-28 18:32:35 jdbc[4]: exception
+2018-03-06 17:19:59 jdbc[4]: exception
 org.h2.jdbc.JdbcSQLException: Table "PLAY_EVOLUTIONS" not found; SQL statement:
 select id, hash, apply_script, revert_script, state, last_problem from play_evolutions where state like 'applying_%' [42102-193]
-2018-02-28 19:00:42 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLException: Column "PROJECT_ID" not found; SQL statement:
-update employee set project_id = 1 where project_id is null [42122-193]
+2018-03-06 17:20:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "Wood Street" not found; SQL statement:
+insert into address (id, street, county,) values (1, "Wood Street", "Cork") [42122-193]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
 	at org.h2.message.DbException.get(DbException.java:179)
 	at org.h2.message.DbException.get(DbException.java:155)
-	at org.h2.table.Table.getColumn(Table.java:682)
-	at org.h2.command.Parser.readTableColumn(Parser.java:723)
-	at org.h2.command.Parser.parseUpdate(Parser.java:757)
-	at org.h2.command.Parser.parsePrepared(Parser.java:467)
-	at org.h2.command.Parser.parse(Parser.java:317)
-	at org.h2.command.Parser.parse(Parser.java:289)
-	at org.h2.command.Parser.prepareCommand(Parser.java:254)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:147)
+	at org.h2.command.dml.Insert.prepare(Insert.java:270)
+	at org.h2.command.Parser.prepareCommand(Parser.java:259)
 	at org.h2.engine.Session.prepareLocal(Session.java:561)
 	at org.h2.engine.Session.prepareCommand(Session.java:502)
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1203)

@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
-// @SOURCE:C:/Users/brand/Documents/GroupCA/GroupCA/conf/routes
-// @DATE:Wed Feb 28 19:12:02 GMT 2018
+// @SOURCE:/home/wdd/GroupCA/GroupCA/conf/routes
+// @DATE:Tue Mar 06 16:51:34 GMT 2018
 
 package controllers;
 

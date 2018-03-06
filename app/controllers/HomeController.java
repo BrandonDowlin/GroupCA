@@ -77,7 +77,7 @@ public class HomeController extends Controller {
                 newEmployee.save();
 
                 for (Long proj : newEmployee.getProjSelect()) {
-                    newEmployee.projects.add(Project.find.byId(proj));
+                    newEmployee.getProjects().add(Project.find.byId(proj));
                 }
             newEmployee.update();
 
@@ -92,7 +92,7 @@ public class HomeController extends Controller {
 
         String saveImageMsg = saveFile(newEmployee.getId(), image);
 
-        flash("success", "Employee " + newEmployee.getLname() + " has been created/updated " + saveImageMsg);
+        flash("success", "Employee " + newEmployee.getFname() + " " + newEmployee.getLname() + " has been created" + saveImageMsg);
 
         return redirect(controllers.routes.HomeController.index(0));
     }
@@ -152,7 +152,7 @@ public class HomeController extends Controller {
 
             String saveImageMsg = saveFile(e.getId(), image);
 
-            flash("success", "employee " +e.getFname() + "" +e.getLname() + " has been  updated " + saveImageMsg);
+            flash("success", "Employee " +e.getFname() + "" +e.getLname() + " has been  updated " + saveImageMsg);
             
             // Redirect to the index page
             return redirect(controllers.routes.HomeController.index(0));

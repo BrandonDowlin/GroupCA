@@ -26,7 +26,6 @@ public class Employee extends Model {
         @Constraints.Required
         @ManyToOne
         private Department department; 
-        
        
 
         public List<Long> projSelect = new ArrayList<Long>();

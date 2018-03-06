@@ -4,7 +4,7 @@
 		module="groupca-build"
 		revision="0.1-SNAPSHOT"
 		status="integration"
-		publication="20180228141006"
+		publication="20180306152859"
 		e:sbtVersion="1.0" e:scalaVersion="2.12"
 	>
 		<description>
